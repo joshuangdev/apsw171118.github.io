@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="follow, index">
+    <meta name="description" content="full time cool dev from france">
+    <meta property="og:title" content="Mewzax">
+    <meta property="og:description" content="full time cool dev from france">
+    <meta property="og:url" content="https://mewzax.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mewzax">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/75091300?v=4">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@mewziak">
+    <meta name="twitter:creator" content="@mewziak">
+    <meta name="twitter:title" content="Mewzax">
+    <meta name="twitter:description" content="full time cool dev from france">
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/75091300?v=4">
+
+    <!-- Title -->
+    <title>Mewzax</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous">
+
+    <style>
+        /* Styles from the second code snippet */
+        /* ... (CSS styles from the second code snippet) ... */
+    </style>
+</head>
+<body>
+    <!-- Div -->
+    <div id="div" hidden></div>
+
+    <!-- Navbar -->
+    <!-- ... (existing navbar code) ... -->
+
+    <!-- Main -->
+    <section class="index">
+        <div class="card">
+            <!-- ... (existing card code) ... -->
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // JavaScript from the second code snippet
+        var div = document.getElementById('div'), x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+        function reCalc() {
+            var x3 = Math.min(x1,x2);
+            var x4 = Math.max(x1,x2);
+            var y3 = Math.min(y1,y2);
+            var y4 = Math.max(y1,y2);
+            div.style.left = x3 + 'px';
+            div.style.top = y3 + 'px';
+            div.style.width = x4 - x3 + 'px';
+            div.style.height = y4 - y3 + 'px';
+        }
+        onmousedown = function(e) {
+            div.hidden = false;
+            x1 = e.clientX;
+            y1 = e.clientY;
+            reCalc();
+        };
+        onmousemove = function(e) {
+            x2 = e.clientX;
+            y2 = e.clientY;
+            reCalc();
+        };
+        onmouseup = function(e) {
+            div.hidden = true;
+        };
+    </script>
+</body>
+</html>
