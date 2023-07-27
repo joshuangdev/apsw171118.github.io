@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href="http://fonts.cdnfonts.com/css/whitney-2" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Discord Profile Card</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="card-container">
+      <div class="card">
+        <div class="card-header">
+          <div
+            style="background: url('./assets/img/banner.jpeg')"
+            class="banner-image"
+          ></div>
+          <div class="infos">
+            <div class="profil-logo">
+              <img src="./assets/img/logo.png" />
+            </div>
+            <div class="badges-container">
+              <div class="badge-item">
+                <img src="./assets/img/badges/team.webp" alt="" />
+                <div class="tooltip tooltip-up">Discord Staff</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/partner.webp" alt="" />
+                <div class="tooltip tooltip-up">Discord Partners</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/megabughunter.webp" alt="" />
+                <div class="tooltip tooltip-up">Bughunter</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/eventcreator.webp" alt="" />
+                <div class="tooltip tooltip-up">Event Badge</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/bravery.webp" alt="" />
+                <div class="tooltip tooltip-up">Bravery House</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/moderator.webp" alt="" />
+                <div class="tooltip tooltip-up">Discord Verified Moderator</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/firsttimenitro.webp" alt="" />
+                <div class="tooltip tooltip-up">Subscriber since Jan-1990</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/nitro.webp" alt="" />
+                <div class="tooltip tooltip-up">Super Nitro Subscriber</div>
+              </div>
+              <div class="badge-item">
+                <img src="./assets/img/badges/boost.webp" alt="" />
+                <div class="tooltip tooltip-up">
+                  Boosting since Jan-1990
+                </div>
+              </div>
+            </div>
+            <div class="username">knownaskitty</div>
+            <hr />
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="about-me">
+            <div class="category-title">About Me</div>
+            <p>I'm a fullstack developer and designer from Hong Kong.
+              I develope discord bots, python scripts.
+              I design logos, videos, banners and websites.
+            </p>
+          </div>
+          <div class="roles">
+            <div class="category-title">Roles</div>
+            <div class="roles-list">
+              <div class="role">
+                <div class="color" style="background: black"></div>
+                Server Owner 👑
+              </div>
+              <div class="role">
+                <div class="color" style="background: blue"></div>
+                Fullstack Developers 👩‍💻
+              </div>
+              <div class="role">
+                <div class="color" style="background: yellow"></div>
+                Website Designer 🌐
+              </div>
+              <div class="role">
+                <div class="color" style="background: pink"></div>
+                Designer 📐
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            <div class="category-title">Note</div>
+            <textarea placeholder="Click for add a note"></textarea>
+          </div>
+        </div>
+        <div class="card-footer">
+          <input type="text" placeholder="Send a message to @knownaskitty" />
+        </div>
+      </div>
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="https://sybraxdesign.fr/api/github/main.js"></script>
+  </body>
+</html>
