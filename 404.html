@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: black; /* Set the background color to black */
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+    }
+
+    .image {
+      max-width: 200px;
+      margin-right: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff; /* Set the text color to white */
+      transition: color 0.3s ease;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .container:hover .image {
+      transform: rotate(360deg);
+    }
+
+    .container:hover .text {
+      color: #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="image" src="./assets/img/banner.jpeg" alt="Image">
+    <div class="text">Oops! The page you are looking for doesn't exist.</div>
+  </div>
+  <button class="button" onclick="window.location.href='/';">Back to home</button>
+</body>
+</html>
