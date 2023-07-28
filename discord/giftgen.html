@@ -5,22 +5,26 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f1f1f1;
+      background: url('https://res.cloudinary.com/your-cloudinary-link/image/upload/v1627439166/background.jpg') no-repeat center center fixed;
+      background-size: cover;
       margin: 0;
       padding: 0;
     }
+
     .container {
       max-width: 600px;
       margin: 20px auto;
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
       text-align: center;
       margin-bottom: 20px;
     }
+
     textarea {
       width: 100%;
       height: 300px;
@@ -29,10 +33,12 @@
       padding: 5px;
       font-family: monospace;
     }
+
     input[type="number"] {
       width: 100%;
       padding: 5px;
     }
+
     button {
       padding: 10px 20px;
       background-color: #007BFF;
@@ -42,14 +48,17 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
+
     button:hover {
       background-color: #0056b3;
     }
+
     #controls {
       display: flex;
       justify-content: space-between;
       margin-top: 10px;
     }
+
     #stop {
       background-color: #DC3545;
     }
