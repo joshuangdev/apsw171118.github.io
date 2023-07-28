@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webhook Deleter</title>
+  <style>
+    body {
+      background-image: url('https://res.cloudinary.com/dwfzh4ouf/image/upload/v1690542799/codingwallpaper.webp');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    div {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    input[type="text"], button {
+      padding: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    input[type="text"] {
+      margin-right: 8px;
+    }
+
+    /* Change the colors of the buttons */
+    button {
+      background-color: #ff6b6b; /* Red */
+      color: #fff;
+    }
+
+    button:hover {
+      background-color: #f95e5e; /* Lighter red on hover */
+    }
+
+    button:active {
+      background-color: #e05c5c; /* Even lighter red when active */
+    }
+
+    input[type="text"]:hover, input[type="text"]:focus {
+      background-color: #f0f0f0;
+    }
+
+    #output {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <input type="text" id="webhookUrl" placeholder="Enter webhook URL">
+    <button onclick="deleteWebhook()">Delete Webhook</button>
+    <p id="output"></p>
+  </div>
+
+  <script>
+    function deleteWebhook() {
+      const webhookUrl = document.getElementById('webhookUrl').value;
+      const headers = { 'Content-Type': 'application/json' };
+
+      if (!webhookUrl.startsWith('https://discord.com/api/webhooks/')) {
+        document.getElementById('output').textContent = 'Invalid webhook URL';
+        return;
+      }
+
+      fetch(webhookUrl, { method: 'DELETE', headers })
+        .then(response => {
+          if (response.status === 204) {
+            document.getElementById('output').textContent = 'Webhook deleted successfully.';
+          } if (response.status === 404) {
+            document.getElementById('output').textContent = 'Webhook doesn\'t exist.';
+          }
+        })
+        .catch(error => {
+          document.getElementById('output').textContent = 'Error deleting webhook: ' + error;
+        });
+    }
+  </script>
+</body>
+</html>
