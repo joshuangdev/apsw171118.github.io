@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gift Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      resize: vertical;
+      margin-bottom: 10px;
+      padding: 5px;
+      font-family: monospace;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    #stop {
+      background-color: #DC3545;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gift Code Generator</h1>
+    <textarea id="a" readonly></textarea>
+    <textarea id="b" readonly></textarea>
+    <div id="controls">
+      <input type="number" id="speed" value="10" min="1" max="100">
+      <button id="generate">Generate</button>
+      <button id="stop">Stop</button>
+    </div>
+  </div>
+
+  <script>
+(function(){
+    var oldLog = console.log;
+    console.log = function (message) {
+        document.getElementById('a').value += message
+        oldLog.apply(arguments);
+    };
+})();
+
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+var textarea = document.getElementById('a')
+if (navigator.userAgent.indexOf('Mobile') !== -1) { document.getElementById('save').style.display = "none"; textarea.style.height = "100px";
+}//resize for mobile
+function generate() {
+var triesPerSecond = document.getElementById('speed').value //self explanatory
+getGiftCode = function () {
+    let code = '';
+    let dict = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    for(var i = 0; i < 16; i++){
+        code = code + dict.charAt(Math.floor(Math.random() * dict.length));
+    }
+    console.log('[GEN] http://discord.gift/' + code + "\n");
+    code += '\n'
+    document.getElementById('b').value += code;
+
+} //generates codes
+
+
+getGiftCode();
+document.getElementById('stop').addEventListener("click", stop); //binds button stop to function stop
+function stop() {
+  clearInterval(gInterval);
+  clearInterval(interval)
+} //stop generating and stop console scroll loop
+var gInterval = setInterval(() => {getGiftCode();}, (1/triesPerSecond) * 1000);
+//repeat making codes
+
+function scroll() {
+  document.getElementById("a").scrollTop = document.getElementById("a").scrollHeight
+}; // auto scroll
+var interval = setInterval(scroll, 100) //keep on making "console" scroll
+document.getElementById('clear').addEventListener("click", stop);
+}
+
+document.getElementById('generate').addEventListener("click", generate);
+  </script>
+</body>
+</html>
