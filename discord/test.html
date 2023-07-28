@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Link Checker</title>
+  <style>
+    body {
+      background-image: url('https://res.cloudinary.com/dwfzh4ouf/image/upload/v1690542799/codingwallpaper.webp');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    div {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    input[type="text"], button {
+      padding: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    input[type="text"] {
+      margin-right: 8px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="text"]:hover, input[type="text"]:focus {
+      background-color: #f0f0f0;
+    }
+
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <input type="text" id="giftLinkInput" placeholder="Enter gift link">
+    <button onclick="checkGiftLink()">Check Gift Link</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function checkGiftLink() {
+      const giftLinkInput = document.getElementById('giftLinkInput').value.trim();
+      const discordAPIEndpoint = `https://discordapp.com/api/v9/entitlements/gift-codes/${giftLinkInput}?with_application=false&with_subscription_plan=true`;
+
+      fetch(discordAPIEndpoint)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          } else if (response.status === 429) {
+            throw new Error('Rate limit exceeded. Please try again later.');
+          } else {
+            throw new Error('Gift link is invalid.');
+          }
+        })
+        .then(data => {
+          // Process the API response and check if the gift link is valid
+          const isValid = data?.uses !== undefined;
+          document.getElementById('result').textContent = isValid ? 'Valid gift link!' : 'Invalid gift link!';
+        })
+        .catch(error => {
+          console.error('Error:', error.message);
+          document.getElementById('result').textContent = error.message;
+        });
+    }
+  </script>
+</body>
+</html>
