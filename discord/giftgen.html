@@ -55,8 +55,7 @@
 
     #controls {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      justify-content: space-between;
       margin-top: 10px;
     }
 
@@ -70,10 +69,9 @@
     <h1>Gift Code Generator</h1>
     <textarea id="a" readonly></textarea>
     <div id="controls">
-      <label for="amount">Amount of links to generate:</label>
-      <input type="number" id="amount" value="10" min="0">
-      <button id="generate">Start</button>
-      <button id="stop" disabled>Stop</button>
+      <input type="number" id="speed" value="10" min="1" max="100">
+      <button id="generate">Generate</button>
+      <button id="stop">Stop</button>
       <button id="save">Save</button>
     </div>
   </div>
@@ -99,44 +97,40 @@
       document.body.removeChild(element);
     }
     
+    var textarea = document.getElementById('a');
+    if (navigator.userAgent.indexOf('Mobile') !== -1) {
+      document.getElementById('save').style.display = "none";
+      textarea.style.height = "100px";
+    } //resize for mobile
+    
     function generate() {
       var triesPerSecond = document.getElementById('speed').value; //self explanatory
-      var amount = document.getElementById('amount').value;
-      var linksGenerated = 0;
-      var gInterval;
-    
-      function getGiftCode() {
-        if (amount === "0" || linksGenerated < amount) {
+      getGiftCode = function () {
           let code = '';
           let dict = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
           for(var i = 0; i < 16; i++){
               code = code + dict.charAt(Math.floor(Math.random() * dict.length));
           }
           console.log('[GEN] http://discord.gift/' + code + "\n");
-          linksGenerated++;
-        } else {
-          stop();
-        }
       };
     
       getGiftCode();
-      document.getElementById('generate').setAttribute('disabled', 'disabled');
-      document.getElementById('stop').removeAttribute('disabled');
-      gInterval = setInterval(getGiftCode, (1/triesPerSecond) * 1000);
-    }
+      document.getElementById('stop').addEventListener("click", stop); //binds button stop to function stop
+      function stop() {
+        clearInterval(gInterval);
+        clearInterval(interval);
+      } //stop generating and stop console scroll loop
+      var gInterval = setInterval(() => {getGiftCode();}, (1/triesPerSecond) * 1000);
+      //repeat making codes
     
-    function stop() {
-      clearInterval(gInterval);
-      document.getElementById('generate').removeAttribute('disabled');
-      document.getElementById('stop').setAttribute('disabled', 'disabled');
+      function scroll() {
+        document.getElementById("a").scrollTop = document.getElementById("a").scrollHeight;
+      } // auto scroll
+      var interval = setInterval(scroll, 100); //keep on making "console" scroll
     }
-    
-    function scroll() {
-      document.getElementById("a").scrollTop = document.getElementById("a").scrollHeight;
-    } // auto scroll
     
     document.getElementById('generate').addEventListener("click", generate);
-    document.getElementById('stop').addEventListener("click", stop);
+    
     document.getElementById('save').addEventListener("click", function() {
       var content = document.getElementById('a').value;
       download('generated_codes.txt', content);
